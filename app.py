@@ -161,7 +161,12 @@ selected_price_labels = st.sidebar.multiselect("2. 價格範圍（可多選）",
 selected_prices = [price_mapping[label] for label in selected_price_labels]
 
 distance_mapping = {"近 (淡大校旁/步行即達)": "近", "中 (捷運站/英專路/老街)": "中", "遠 (新市鎮/漁人碼頭/放學約會)": "遠"}
-selected_dist_labels = st.sidebar.multiselect("3. 交通距離（可多選）", options=list(distance_mapping.keys()), default=["近", "中"])
+# 修正這裡的 default，完全對應 Options 的字串鍵
+selected_dist_labels = st.sidebar.multiselect(
+    "3. 交通距離（可多選）", 
+    options=list(distance_mapping.keys()), 
+    default=["近 (淡大校旁/步行即達)", "中 (捷運站/英專路/老街)"]
+)
 selected_distances = [distance_mapping[label] for label in selected_dist_labels]
 
 min_rating = st.sidebar.slider("4. 最低評價要求 (⭐)", min_value=3.5, max_value=5.0, value=3.8, step=0.1)
